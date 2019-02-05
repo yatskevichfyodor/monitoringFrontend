@@ -1,0 +1,23 @@
+<mat-card *ngIf="serversList; else loading" class="container mb-4 mt-4">
+  <div class="d-flex mb-4">
+    <h1 class="mr-auto">Our servers</h1>
+    <a class="mr-1 align-self-center" mat-raised-button style="background-color:#AAAAFF" [routerLink]="['/server-update']" [hidden]="!authenticated()">Add server</a>
+    <a mat-raised-button class="align-self-center" style="background-color:#AAAAFF" [routerLink]="['/games-list']" [hidden]="!authenticated()">Games list</a>
+  </div>
+
+  <div class="mb-4 row justify-content-center">
+				<div class="col-xs-4" *ngFor="let server of serversList">
+				  <div class="server-panel" width="320px" height="240px">
+					<a [routerLink]="['/server', server.id]">
+						<img width="320px" height="240px" src="{{server.imageData}}">
+					</a>
+					<span class="server-name"><a [routerLink]="['/server', server.id]">{{server.name}}</a></span>
+					<span class="server-game-name">{{server.gameName}}</span>
+					<span class="server-ip">{{server.ip}}</span>
+					<span class="server-players-number">{{server.activePlayersNumber}}/{{server.maxPlayersNumber}}</span>
+				  </div>
+				</div>
+  </div>
+</mat-card>
+
+<ng-template #loading><loader></loader></ng-template>

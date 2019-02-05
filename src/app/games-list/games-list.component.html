@@ -1,0 +1,24 @@
+<mat-card class="container text-center mb-4 mt-4" style="width:40%">
+    <div class="text-center"><h2>Games List</h2></div>
+    <mat-card-content>
+      <mat-selection-list #gamesList>
+        <mat-list-option *ngFor="let game of games" [value]="game.id">
+          {{game.name}}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-card-content>
+
+
+    <div class="d-flex">
+      <form #gameForm="ngForm" (ngSubmit)="save(gameForm.value)">
+        <!-- <div class="d-flex flex-row"> -->
+        <input matInput placeholder="Game name" required name="name" class="mr-1" [(ngModel)]="game.name">
+        <button mat-raised-button type="submit" style="background-color:#AAAAFF">Add</button>
+        <!-- </div> -->
+      </form>
+      <button [disabled]="gamesList.selectedOptions.selected.length != 1" class="ml-auto mat-button"
+              style="background-color:#AA2222" (click)="delete(gamesList.selectedOptions.selected[0].value)">Delete
+      </button>
+    </div>
+  </mat-card>
+

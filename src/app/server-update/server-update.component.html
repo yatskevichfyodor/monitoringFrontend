@@ -1,0 +1,48 @@
+<mat-card *ngIf="newServer || server; else loading" class="container mt-4 mb-4" style="width:30%">
+  <h2 class="mr-auto">New server info:</h2>
+  <image-upload *ngIf="newServer; else preloadedImageUpload"
+                (uploadFinished)="imageDropped($event)"
+                (removed)="imageRemoved($event)"
+				[max]="1" 
+				[extensions]="['jpeg','png']"
+                buttonCaption="Upload image (*)" 
+				dropBoxMessage="(or) Drop image here" clearButtonCaption="Remove image"
+                class="imageDragNDrop">
+  </image-upload>
+  <image-upload #preloadedImageUpload
+                *ngIf="!newServer"
+                [uploadedFiles]="[server.imageData]"
+                (uploadFinished)="imageDropped($event)"
+                (removed)="imageRemoved($event)"
+				[max]="1" 
+				[extensions]="['jpeg','png']"
+                buttonCaption="Upload image (*)" 
+				dropBoxMessage="(or) Drop image here" clearButtonCaption="Remove image"
+                class="imageDragNDrop">
+  </image-upload>
+
+  <form #serverForm="ngForm" (ngSubmit)="save()">
+    <input type="hidden" name="imageData" [(ngModel)]="server.imageData"/>
+    <mat-form-field>
+      <mat-select matInput required placeholder="Game" name="gameId" [(ngModel)]="server.gameId">
+        <mat-option *ngFor="let game of games" [value]="game.id">
+          {{game.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput required placeholder="Server name" name="name" pattern=".{1,32}" [(ngModel)]="server.name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput required placeholder="Server IP with port" name="ip" pattern="([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3}):([0-9]{1,5})" [(ngModel)]="server.ip">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput required placeholder="Max players number" name="maxPlayersNumber" pattern="[0-9]{1,4}" [(ngModel)]="server.maxPlayersNumber">
+    </mat-form-field>
+	<div class="text-center">
+      <button mat-raised-button type="submit" style="background-color:#AAAAFF">Add</button>
+	</div>
+  </form> 
+</mat-card>
+
+<ng-template #loading><loader></loader></ng-template>

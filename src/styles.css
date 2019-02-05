@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+
+body {
+ margin: 0;
+ font-family: Roboto, sans-serif;
+ background-image: url("assets\pictures\background.png");
+}
+
+.imageDragNDrop {
+    background-color: #CCCCCC;
+    border-radius: 0px;
+    margin:5px;
+    width: 300px;
+}
+
+.imageDragNDrop .img-ul-upload {
+    background-color: #AAAAFF !important;
+}
+
+.imageDragNDrop .img-ul-clear {
+    background-color: #AA2222 !important;
+}
+
+.imageDragNDrop .img-ul-drag-box-msg {
+    color: #555555 !important;
+}
+
+.imageDragNDrop .img-ul-container {
+    background-color: #CCCCCC !important;
+}

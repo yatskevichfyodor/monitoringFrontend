@@ -1,0 +1,18 @@
+<h2 class="header ml-2">Active players</h2>
+<table *ngIf="activePlayers; let activePlayers; else loading" class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nickname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let activePlayer of activePlayers">
+      <th scope="row">{{activePlayer?.id}}</th>
+      <td>{{activePlayer?.name}}</td>
+    </tr>
+    <tr>
+  </tbody>
+</table>
+
+<ng-template #loading><loader></loader></ng-template>

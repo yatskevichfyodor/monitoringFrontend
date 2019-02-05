@@ -1,0 +1,18 @@
+<mat-card class="container mt-4 mb-4" style="width:30%">
+  <h2 class="text-center">Sign in</h2>
+  <form #serverForm="ngForm"  (submit)="login()">
+    <mat-form-field>
+      <input matInput required placeholder="Username" type="text" pattern=".{1,32}" name="username" [(ngModel)]="credentials.username">
+    </mat-form-field>
+    <!--<mat-form-field>
+      <input matInput required placeholder="Email" type="email" [(ngModel)]="user.email">
+    </mat-form-field>-->
+    <mat-form-field>
+      <input matInput required placeholder="Password" type="password" pattern=".{1,32}" name="password" [(ngModel)]="credentials.password">
+    </mat-form-field>
+	<div class="text-center">
+      <button mat-raised-button type="submit" style="background-color:#AAAAFF">Sign in</button>
+	</div>
+	<span>{{message}}</span>
+  </form> 
+</mat-card>
